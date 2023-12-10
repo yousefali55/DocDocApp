@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 class RepeatedButton extends StatelessWidget {
   final String TextInButton;
-  const RepeatedButton({super.key, required this.TextInButton});
+  final void Function() onPressed;
+  const RepeatedButton({super.key, required this.TextInButton, required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ButtonStyles.RepeatedButtonBlue,
-      onPressed: (){},
+      onPressed: onPressed,
       child: Text(
         TextInButton,
         style: TextStyles.InterSemiW600Size16,

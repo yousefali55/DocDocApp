@@ -1,3 +1,4 @@
+import 'package:docdoc/core/Screens/login_screen.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,17 @@ class TextAndButtonInonBoearding extends StatelessWidget {
           SizedBox(
             height: 32.h,
           ),
-          RepeatedButton(TextInButton: 'Get Started',)
+          RepeatedButton(
+            TextInButton: 'Get Started',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const LoginScreen(),
+                ),
+              );
+            },
+          )
         ],
       ),
     );
