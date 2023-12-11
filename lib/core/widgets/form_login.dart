@@ -1,4 +1,5 @@
 import 'package:docdoc/core/constants/text_styles.dart';
+import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,10 @@ class LoginForm extends StatelessWidget {
           height: 16.h,
         ),
         RepeatedButton(TextInButton: 'Login', onPressed: () {}),
+        SizedBox(
+          height: 46.h,
+        ),
+        OrSignWithRow(),
       ],
     ));
   }
