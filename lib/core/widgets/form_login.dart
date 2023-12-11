@@ -3,6 +3,7 @@ import 'package:docdoc/core/widgets/auth_logos_row.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
+import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +14,7 @@ class LoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return Form(
         child: Column(
-      children: [
+              children: [
         TextFormFieldLogin(
           hinttext: 'Email',
         ),
@@ -55,7 +56,8 @@ class LoginForm extends StatelessWidget {
           height: 32.h,
         ),
         AuthLogosRow(),
-      ],
-    ));
+        TextsUnderSigninSignUp(),
+              ],
+            ));
   }
 }
