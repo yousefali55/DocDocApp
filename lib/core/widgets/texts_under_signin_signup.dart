@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class TextsUnderSigninSignUp extends StatelessWidget {
-  const TextsUnderSigninSignUp({Key? key}) : super(key: key);
+  final void Function() onTap;
+  final String signinOrUp;
+  const TextsUnderSigninSignUp({ required this.onTap, required this.signinOrUp});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +43,7 @@ class TextsUnderSigninSignUp extends StatelessWidget {
           height: 24.h,
         ),
         GestureDetector(
-          onTap: () {},
+          onTap: onTap,
           child: RichText(
             text: TextSpan(
               children: [
@@ -54,7 +56,7 @@ class TextsUnderSigninSignUp extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: 'Sign Up',
+                  text: signinOrUp,
                   style: GoogleFonts.inter(
                     fontSize: 15,
                     fontWeight: FontWeight.w600,

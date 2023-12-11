@@ -1,4 +1,4 @@
-import 'package:docdoc/core/Screens/login_screen.dart';
+import 'package:docdoc/core/Screens/singin.dart';
 import 'package:docdoc/core/Screens/onboarding_screen.dart';
 import 'package:docdoc/core/Routing/routes.dart';
 import 'package:flutter/material.dart';
