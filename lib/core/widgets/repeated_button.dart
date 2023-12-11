@@ -14,7 +14,7 @@ class RepeatedButton extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         TextInButton,
-        style: TextStyles.InterSemiW600Size16,
+        style: TextStyles.InterSemiW600Size16White,
       ));
   }
 }

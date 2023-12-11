@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RowInOnboardingScreen extends StatelessWidget {
+  const RowInOnboardingScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -12,7 +14,7 @@ class RowInOnboardingScreen extends StatelessWidget {
         SizedBox(
           width: 8.w,
         ),
-        Container(
+        SizedBox(
           width: 95.w,
           height: 20.h,
           child: Image.asset(

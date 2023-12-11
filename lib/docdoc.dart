@@ -16,8 +16,8 @@ class DocDoc extends StatelessWidget{
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: ColorsManager.GeneralBlue,
-          scaffoldBackgroundColor: ColorsManager.White,
+          primaryColor: ColorsManager.generalBlue,
+          scaffoldBackgroundColor: ColorsManager.white,
         ),
         initialRoute: Routes.OnBoardingScreen,
         onGenerateRoute: appRouter.generateRoute,

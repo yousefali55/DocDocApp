@@ -4,6 +4,7 @@ import 'package:docdoc/core/widgets/text_and_button_onBoarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+// ignore: camel_case_types
 class onBoardingScreen extends StatelessWidget {
   const onBoardingScreen({super.key});
   @override

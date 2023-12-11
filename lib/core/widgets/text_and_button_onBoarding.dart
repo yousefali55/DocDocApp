@@ -10,12 +10,12 @@ class TextAndButtonInonBoearding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Column(
         children: [
           Text(
             'Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
-            style: TextStyles.InterW400Size10,
+            style: TextStyles.InterW400Size10Grey,
             textAlign: TextAlign.center,
           ),
           SizedBox(

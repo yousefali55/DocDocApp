@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class ButtonStyles {
   static const ButtonStyle RepeatedButtonBlue = ButtonStyle(
-    backgroundColor: MaterialStatePropertyAll(ColorsManager.GeneralBlue),
+    backgroundColor: MaterialStatePropertyAll(ColorsManager.generalBlue),
     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
     minimumSize: MaterialStatePropertyAll(
       Size(double.infinity, 52),
