@@ -1,4 +1,5 @@
 import 'package:docdoc/core/constants/text_styles.dart';
+import 'package:docdoc/core/widgets/auth_logos_row.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
@@ -50,6 +51,10 @@ class LoginForm extends StatelessWidget {
           height: 46.h,
         ),
         OrSignWithRow(),
+        SizedBox(
+          height: 32.h,
+        ),
+        AuthLogosRow(),
       ],
     ));
   }
