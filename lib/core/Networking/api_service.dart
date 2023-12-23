@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:docdoc/core/Networking/api_costants.dart';
-import 'package:docdoc/core/Screens/login/data/login_request_model.dart';
-import 'package:docdoc/core/Screens/login/data/login_response.dart';
+import 'package:docdoc/core/Screens/login/data/model/login_request_model.dart';
+import 'package:docdoc/core/Screens/login/data/model/login_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 
