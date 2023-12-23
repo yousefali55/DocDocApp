@@ -1,4 +1,4 @@
-import 'package:docdoc/core/Screens/signup.dart';
+import 'package:docdoc/core/Screens/signup/ui/signup.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
