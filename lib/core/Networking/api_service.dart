@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:docdoc/core/Networking/api_costants.dart';
 import 'package:docdoc/core/Screens/login/data/model/login_request_model.dart';
 import 'package:docdoc/core/Screens/login/data/model/login_response.dart';
+import 'package:docdoc/core/Screens/signup/data/sign_up_request_body.dart';
 import 'package:retrofit/retrofit.dart';
 
 
@@ -13,4 +14,6 @@ abstract class ApiService{
   Future<LoginResponse> login(
     @Body() LoginRequestBody loginRequestBody,
   );
+
+  signup(SignupRequestBody signupRequestBody) {}
 }
