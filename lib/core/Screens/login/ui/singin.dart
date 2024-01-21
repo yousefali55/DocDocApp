@@ -1,3 +1,4 @@
+import 'package:docdoc/core/Screens/login/ui/form_login.dart';
 import 'package:docdoc/core/Screens/signup/ui/signup.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/form_login.dart';
@@ -38,15 +39,15 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 36.h,
                 ),
-                LoginForm(
-                  signinOrUp: 'Sign Up',
-                  onTap: (){
-                    Navigator.push(
-                      context, 
-                      MaterialPageRoute(
-                        builder: (_) => const SignUpScreen()));
-                  }
-                ),
+                // LoginForm(
+                //   signinOrUp: 'Sign Up',
+                //   onTap: (){
+                //     Navigator.push(
+                //       context, 
+                //       MaterialPageRoute(
+                //         builder: (_) => const SignUpScreen()));
+                //   }
+                // ),
               ],
             ),
           ),

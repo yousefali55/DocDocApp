@@ -7,23 +7,24 @@ import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginFormm extends StatelessWidget {
   final String signinOrUp;
   final void Function() onTap;
-  const LoginForm({super.key, required this.signinOrUp, required this.onTap});
+  const LoginFormm({super.key, required this.signinOrUp, required this.onTap});
+
 
   @override
   Widget build(BuildContext context) {
     return Form(
       child: Column(
         children: [
-          TextFormFieldLogin(
+          const TextFormFieldLogin(
             hinttext: 'Email',
           ),
           SizedBox(
             height: 20.h,
           ),
-          TextFormFieldLogin(
+          const TextFormFieldLogin(
             hinttext: 'Password',
           ),
           SizedBox(
@@ -53,11 +54,11 @@ class LoginForm extends StatelessWidget {
           SizedBox(
             height: 46.h,
           ),
-          OrSignWithRow(),
+          const OrSignWithRow(),
           SizedBox(
             height: 32.h,
           ),
-          AuthLogosRow(),
+          const AuthLogosRow(),
           TextsUnderSigninSignUp(
             signinOrUp: signinOrUp,
             onTap: onTap,

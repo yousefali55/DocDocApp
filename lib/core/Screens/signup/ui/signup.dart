@@ -33,7 +33,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBox(
                   height: 17.h,
                 ),
-                LoginForm(
+                LoginFormm(
                   signinOrUp: 'Sign In',
                   onTap: () {
                     Navigator.pop(context);
