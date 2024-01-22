@@ -1,8 +1,6 @@
 import 'dart:js';
 
-import 'package:docdoc/core/Screens/login/cubits/login_cubit/login_cubit.dart';
-import 'package:docdoc/core/Screens/login/data/model/login_request_model.dart';
-import 'package:docdoc/core/Screens/login/widgets/bloc_listener_login.dart';
+
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
@@ -34,7 +32,7 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<LoginCubit>().formKey,
+      // key: context.read<LoginCubit>().formKey,
       child: Column(
         children: [
           TextFormFieldLogin(
@@ -44,14 +42,14 @@ class _LoginFormState extends State<LoginForm> {
                 return 'Please enter email';
               }
             },
-            controller: context.read<LoginCubit>().emailController,
+            // controller: context.read<LoginCubit>().emailController,
           ),
           SizedBox(
             height: 20.h,
           ),
           TextFormFieldLogin(
               hinttext: 'Password',
-              controller: context.read<LoginCubit>().passwordController,
+              // controller: context.read<LoginCubit>().passwordController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Please enter email';
@@ -83,7 +81,6 @@ class _LoginFormState extends State<LoginForm> {
           RepeatedButton(
               TextInButton: 'Login',
               onPressed: () {
-                validateLoginForm(context);
               }),
           SizedBox(
             height: 46.h,
@@ -97,18 +94,9 @@ class _LoginFormState extends State<LoginForm> {
             signinOrUp: widget.signinOrUp,
             onTap: widget.onTap,
           ),
-          const BlocListenerLogin(),
+          // const BlocListenerLogin(),
         ],
       ),
     );
-  }
-
-  void validateLoginForm(BuildContext context) {
-    if (context.read<LoginCubit>().formKey.currentState!.validate()) {
-      context.read<LoginCubit>().emitLoginStates(LoginRequestBody(
-            email: context.read<LoginCubit>().emailController.text,
-            password: context.read<LoginCubit>().passwordController.text,
-          ));
-    }
   }
 }
