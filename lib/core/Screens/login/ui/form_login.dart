@@ -1,98 +1,96 @@
+import 'package:docdoc/core/Screens/login/cubit/cubit/sign_in_cubit.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
+import 'package:docdoc/core/widgets/blue_snack_bar.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
-import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginForm extends StatefulWidget {
-  final String signinOrUp;
-  final void Function() onTap;
-  const LoginForm({super.key, required this.signinOrUp, required this.onTap});
-
-  @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  late TextEditingController passwordController;
-
-  @override
-  void initState() {
-    super.initState();
-    //this is line error
-  }
-
+class LoginForm extends StatelessWidget {
+  const LoginForm({super.key});
   @override
   Widget build(BuildContext context) {
-    return Form(
-      // key: context.read<LoginCubit>().formKey,
-      child: Column(
-        children: [
-          TextFormFieldLogin(
-            hinttext: 'Email',
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter email';
-              }
-            },
-            // controller: context.read<LoginCubit>().emailController,
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          TextFormFieldLogin(
-              hinttext: 'Password',
-              // controller: context.read<LoginCubit>().passwordController,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter email';
-                }
-              }),
-          SizedBox(
-            height: 16.h,
-          ),
-          Row(
+    return BlocConsumer<SignInCubit, SignInState>(
+      listener: (context, state) {
+        if (state is SignInSuccess) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(BlueSnackBar(contentText: 'Success'));
+        } else if (state is SignInFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(BlueSnackBar(contentText: 'Failed'));
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: context.read<SignInCubit>().signInFormKey,
+          child: Column(
             children: [
-              Checkbox(
-                value: true,
-                onChanged: (value) => null,
+              TextFormFieldLogin(
+                controller: context.read<SignInCubit>().emailController,
+                hinttext: 'Email',
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter email';
+                  }
+                },
               ),
-              Text(
-                'Remeber me',
-                style: TextStyles.InterW400Size14Grey,
+              SizedBox(
+                height: 20.h,
               ),
-              const Spacer(),
-              Text(
-                'Forgot Password?',
-                style: TextStyles.InterW400size12Blue,
+              TextFormFieldLogin(
+                  controller: context.read<SignInCubit>().passwordController,
+                  hinttext: 'Password',
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter email';
+                    }
+                  }),
+              SizedBox(
+                height: 16.h,
               ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: true,
+                    onChanged: (value) => null,
+                  ),
+                  Text(
+                    'Remeber me',
+                    style: TextStyles.InterW400Size14Grey,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Forgot Password?',
+                    style: TextStyles.InterW400size12Blue,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              state is SignInLoading ? CircularProgressIndicator() : RepeatedButton(TextInButton: 'Login', onPressed: (){
+                context.read<SignInCubit>().signIn();
+              }),
+              SizedBox(
+                height: 46.h,
+              ),
+              const OrSignWithRow(),
+              SizedBox(
+                height: 32.h,
+              ),
+              const AuthLogosRow(),
+              // TextsUnderSigninSignUp(
+              //   signinOrUp: signinOrUp,
+              //   onTap: onTap,
+              // ),
+              // const BlocListenerLogin(),
             ],
           ),
-          SizedBox(
-            height: 16.h,
-          ),
-          RepeatedButton(
-              TextInButton: 'Login',
-              onPressed: () {
-              }),
-          SizedBox(
-            height: 46.h,
-          ),
-          const OrSignWithRow(),
-          SizedBox(
-            height: 32.h,
-          ),
-          const AuthLogosRow(),
-          TextsUnderSigninSignUp(
-            signinOrUp: widget.signinOrUp,
-            onTap: widget.onTap,
-          ),
-          // const BlocListenerLogin(),
-        ],
-      ),
+        );
+      },
     );
   }
 }

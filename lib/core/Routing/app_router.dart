@@ -1,7 +1,11 @@
+import 'package:dio/dio.dart';
+import 'package:docdoc/core/Screens/login/cubit/cubit/sign_in_cubit.dart';
 import 'package:docdoc/core/Screens/login/ui/singin.dart';
 import 'package:docdoc/core/Screens/on_boarding/ui/onboarding_screen.dart';
 import 'package:docdoc/core/Routing/routes.dart';
+import 'package:docdoc/core/Screens/signup/ui/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -13,8 +17,14 @@ class AppRouter {
         );
       case Routes.LoginScreen:
         return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
+          builder: (_) =>  BlocProvider(
+            create: (context) => SignInCubit(Dio()),
+            child: const LoginScreen(),
+          ),
         );
+      case Routes.signUp:
+      return MaterialPageRoute(
+        builder: (_)=> const SignUpScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => const Scaffold(

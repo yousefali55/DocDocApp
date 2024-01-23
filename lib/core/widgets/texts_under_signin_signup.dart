@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:docdoc/core/constants/Colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 class TextsUnderSigninSignUp extends StatelessWidget {
   final void Function() onTap;
   final String signinOrUp;
-  const TextsUnderSigninSignUp({ required this.onTap, required this.signinOrUp});
+
+  const TextsUnderSigninSignUp({required this.onTap, required this.signinOrUp});
 
   @override
   Widget build(BuildContext context) {
@@ -42,29 +46,28 @@ class TextsUnderSigninSignUp extends StatelessWidget {
         SizedBox(
           height: 24.h,
         ),
-        GestureDetector(
-          onTap: onTap,
-          child: RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Already have an account yet? ',
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: ColorsManager.black,
-                  ),
+        RichText(
+          text: TextSpan(
+            children: [
+              TextSpan(
+                text: 'Already have an account yet? ',
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: ColorsManager.black,
                 ),
-                TextSpan(
-                  text: signinOrUp,
-                  style: GoogleFonts.inter(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
-                    color: ColorsManager.generalBlue,
-                  ),
+              ),
+              TextSpan(
+                text: signinOrUp,
+                style: GoogleFonts.inter(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: ColorsManager.generalBlue,
                 ),
-              ],
-            ),
+                recognizer: TapGestureRecognizer()
+                  ..onTap = onTap,
+              ),
+            ],
           ),
         ),
       ],

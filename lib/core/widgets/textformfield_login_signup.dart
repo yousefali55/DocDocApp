@@ -14,14 +14,15 @@ class TextFormFieldLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(20),
           hintText: hinttext,
-          hintStyle: TextStyles.InterW500Size14GreyC2,
+          hintStyle: TextStyles.InterW400Size14Grey,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(16),
             borderSide: BorderSide(
-              color: ColorsManager.lightergrey,
+              color: ColorsManager.grey,
               width: 1.3.w,
             ),
           ),

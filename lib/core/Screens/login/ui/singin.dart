@@ -1,4 +1,7 @@
+import 'package:docdoc/core/Routing/routes.dart';
+import 'package:docdoc/core/Screens/login/ui/form_login.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
+import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,15 +39,13 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 36.h,
                 ),
-                // LoginForm(
-                //   signinOrUp: 'Sign Up',
-                //   onTap: (){
-                //     Navigator.push(
-                //       context, 
-                //       MaterialPageRoute(
-                //         builder: (_) => const SignUpScreen()));
-                //   }
-                // ),
+                const LoginForm(),
+                SizedBox(
+                  height: 10.h,
+                ),
+                TextsUnderSigninSignUp(onTap: (){
+                  Navigator.pushNamed(context, Routes.signUp);
+                }, signinOrUp: 'Sign Up')
               ],
             ),
           ),

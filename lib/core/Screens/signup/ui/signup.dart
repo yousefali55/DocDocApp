@@ -1,5 +1,5 @@
 import 'package:docdoc/core/constants/text_styles.dart';
-import 'package:docdoc/core/widgets/form_login.dart';
+import 'package:docdoc/core/Screens/signup/widgets/form_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
