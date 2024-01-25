@@ -1,4 +1,5 @@
 import 'package:docdoc/core/Screens/login/cubit/cubit/sign_in_cubit.dart';
+import 'package:docdoc/core/constants/colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
 import 'package:docdoc/core/widgets/blue_snack_bar.dart';
@@ -17,10 +18,10 @@ class LoginForm extends StatelessWidget {
       listener: (context, state) {
         if (state is SignInSuccess) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(BlueSnackBar(contentText: 'Success'));
+              .showSnackBar(CustomSnackBar(ColorsManager.generalBlue, contentText: 'Success'));
         } else if (state is SignInFailure) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(BlueSnackBar(contentText: 'Failed'));
+              .showSnackBar(CustomSnackBar(ColorsManager.red, contentText: 'Failed'));
         }
       },
       builder: (context, state) {
@@ -45,7 +46,7 @@ class LoginForm extends StatelessWidget {
                   hinttext: 'Password',
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter email';
+                      return 'Please enter password';
                     }
                   }),
               SizedBox(
@@ -71,9 +72,13 @@ class LoginForm extends StatelessWidget {
               SizedBox(
                 height: 16.h,
               ),
-              state is SignInLoading ? CircularProgressIndicator() : RepeatedButton(TextInButton: 'Login', onPressed: (){
-                context.read<SignInCubit>().signIn();
-              }),
+              state is SignInLoading
+                  ? const CircularProgressIndicator()
+                  : RepeatedButton(
+                      TextInButton: 'Login',
+                      onPressed: () {
+                        context.read<SignInCubit>().signIn();
+                      }),
               SizedBox(
                 height: 46.h,
               ),

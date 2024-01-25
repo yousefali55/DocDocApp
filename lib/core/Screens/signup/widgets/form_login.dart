@@ -1,70 +1,110 @@
+import 'package:docdoc/core/Screens/signup/cubit/cubit/sign_up_cubit.dart';
+import 'package:docdoc/core/constants/colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
+import 'package:docdoc/core/widgets/blue_snack_bar.dart';
 import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
 import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginFormm extends StatelessWidget {
+class SignUpForm extends StatelessWidget {
   final String signinOrUp;
   final void Function() onTap;
-  const LoginFormm({super.key, required this.signinOrUp, required this.onTap});
-
+  const SignUpForm({super.key, required this.signinOrUp, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          const TextFormFieldLogin(
-            hinttext: 'Email',
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          const TextFormFieldLogin(
-            hinttext: 'Password',
-          ),
-          SizedBox(
-            height: 16.h,
-          ),
-          Row(
+    return BlocConsumer<SignUpCubit, SignUpState>(
+      listener: (context, state) {
+        if (state is SignUpSuccess) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar(ColorsManager.generalBlue,contentText: 'Success',));
+        } else if (state is SignUpFailure) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(CustomSnackBar(ColorsManager.generalBlue,contentText: 'Failed'));
+        }
+      },
+      builder: (context, state) {
+        return Form(
+          key: context.read<SignUpCubit>().signUpKey,
+          child: Column(
             children: [
-              Checkbox(
-                value: true,
-                onChanged: (value) => null,
+              TextFormFieldLogin(
+                controller: context.read<SignUpCubit>().userNameController,
+                hinttext: 'Username',
               ),
-              Text(
-                'Remeber me',
-                style: TextStyles.InterW400Size14Grey,
+              SizedBox(
+                height: 20.h,
               ),
-              const Spacer(),
-              Text(
-                'Forgot Password?',
-                style: TextStyles.InterW400size12Blue,
+              TextFormFieldLogin(
+                controller: context.read<SignUpCubit>().emailController,
+                hinttext: 'Email',
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              TextFormFieldLogin(
+                controller: context.read<SignUpCubit>().passwordController,
+                hinttext: 'Password',
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              TextFormFieldLogin(
+                controller:
+                    context.read<SignUpCubit>().passwordConfirmController,
+                hinttext: 'Confirm password',
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              Row(
+                children: [
+                  Checkbox(
+                    value: true,
+                    onChanged: (value) => null,
+                  ),
+                  Text(
+                    'Remeber me',
+                    style: TextStyles.InterW400Size14Grey,
+                  ),
+                  const Spacer(),
+                  Text(
+                    'Forgot Password?',
+                    style: TextStyles.InterW400size12Blue,
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 16.h,
+              ),
+              state is SignUploading
+                  ? const CircularProgressIndicator()
+                  : RepeatedButton(
+                      TextInButton: 'Login',
+                      onPressed: () {
+                        context.read<SignUpCubit>().signUp();
+                      }),
+              SizedBox(
+                height: 46.h,
+              ),
+              const OrSignWithRow(),
+              SizedBox(
+                height: 32.h,
+              ),
+              const AuthLogosRow(),
+              TextsUnderSigninSignUp(
+                signinOrUp: signinOrUp,
+                onTap: onTap,
               ),
             ],
           ),
-          SizedBox(
-            height: 16.h,
-          ),
-          RepeatedButton(TextInButton: 'Login', onPressed: () {}),
-          SizedBox(
-            height: 46.h,
-          ),
-          const OrSignWithRow(),
-          SizedBox(
-            height: 32.h,
-          ),
-          const AuthLogosRow(),
-          TextsUnderSigninSignUp(
-            signinOrUp: signinOrUp,
-            onTap: onTap,
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
