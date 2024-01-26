@@ -1,4 +1,5 @@
-import 'package:docdoc/core/Screens/login/cubit/cubit/sign_in_cubit.dart';
+import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
+import 'package:docdoc/Screens/login/cubit/cubit/sign_in_cubit.dart';
 import 'package:docdoc/core/constants/colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
@@ -11,7 +12,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+  ApiErrorModel? apiErrorModel;
+  LoginForm({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<SignInCubit, SignInState>(
@@ -21,7 +23,7 @@ class LoginForm extends StatelessWidget {
               .showSnackBar(CustomSnackBar(ColorsManager.generalBlue, contentText: 'Success'));
         } else if (state is SignInFailure) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar(ColorsManager.red, contentText: 'Failed'));
+              .showSnackBar(CustomSnackBar(ColorsManager.red, contentText: 'Failed,${apiErrorModel!.message}'));
         }
       },
       builder: (context, state) {

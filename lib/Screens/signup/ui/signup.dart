@@ -1,6 +1,7 @@
-import 'package:docdoc/core/Screens/signup/cubit/cubit/sign_up_cubit.dart';
+import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
+import 'package:docdoc/Screens/signup/cubit/cubit/sign_up_cubit.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
-import 'package:docdoc/core/Screens/signup/widgets/form_login.dart';
+import 'package:docdoc/Screens/signup/widgets/form_login.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -36,6 +37,7 @@ class SignUpScreen extends StatelessWidget {
                   height: 17.h,
                 ),
                 SignUpForm(
+                  apiErrorModel: ApiErrorModel(),
                   signinOrUp: 'Sign Up',
                   onTap: () {
                     context.read<SignUpCubit>().signUp();

@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:docdoc/core/Screens/login/cubit/cubit/sign_in_cubit.dart';
-import 'package:docdoc/core/Screens/login/ui/singin.dart';
-import 'package:docdoc/core/Screens/on_boarding/ui/onboarding_screen.dart';
+import 'package:docdoc/Screens/login/cubit/cubit/sign_in_cubit.dart';
+import 'package:docdoc/Screens/login/ui/singin.dart';
+import 'package:docdoc/Screens/on_boarding/ui/onboarding_screen.dart';
 import 'package:docdoc/core/Routing/routes.dart';
-import 'package:docdoc/core/Screens/signup/ui/signup.dart';
+import 'package:docdoc/Screens/signup/ui/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

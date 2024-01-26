@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
+import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
@@ -8,7 +9,6 @@ part 'sign_in_state.dart';
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit(this.dio) : super(SignInInitial()){
     dio.options.validateStatus = (status) {
-      // return true if the HTTP status code is less than 500
       return status! < 500;
     };
   }
@@ -16,6 +16,7 @@ class SignInCubit extends Cubit<SignInState> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final Dio dio;
+  ApiErrorModel? apiErrorModel;
   signIn() async {
     try {
       emit(SignInLoading());
@@ -27,7 +28,7 @@ class SignInCubit extends Cubit<SignInState> {
       print(response.toString());
       emit(SignInSuccess());
     } catch (e) {
-      emit(SignInFailure(errorMessage: e.toString()));
+      emit(SignInFailure(errorMessage: apiErrorModel!.message!));
       print(e.toString());
     }
   }

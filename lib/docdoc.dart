@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
 import 'package:docdoc/core/Routing/app_router.dart';
 import 'package:docdoc/core/Routing/routes.dart';
-import 'package:docdoc/core/Screens/signup/cubit/cubit/sign_up_cubit.dart';
+import 'package:docdoc/Screens/signup/cubit/cubit/sign_up_cubit.dart';
 import 'package:docdoc/core/constants/Colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +18,7 @@ class DocDoc extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       child: BlocProvider(
-        create: (context) => SignUpCubit(Dio()),
+        create: (context) => SignUpCubit(Dio(),ApiErrorModel()),
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

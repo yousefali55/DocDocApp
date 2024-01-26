@@ -1,5 +1,5 @@
 import 'package:docdoc/core/widgets/row_in_onboarding.dart';
-import 'package:docdoc/core/Screens/on_boarding/widgets/stack_with_doctor_pic.dart';
+import 'package:docdoc/Screens/on_boarding/widgets/stack_with_doctor_pic.dart';
 import 'package:docdoc/core/widgets/text_and_button_onBoarding.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
