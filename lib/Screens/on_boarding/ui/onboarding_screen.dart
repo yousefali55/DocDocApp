@@ -17,15 +17,15 @@ class onBoardingScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              RowInOnboardingScreen(),
+              const RowInOnboardingScreen(),
               SizedBox(
                 height: 40.h,
               ),
-              StackWithDoctorPic(),
+              const StackWithDoctorPic(),
               SizedBox(
                 height: 18.h,
               ),
-              TextAndButtonInonBoearding()
+              const TextAndButtonInonBoearding()
             ],
           ),
         ),

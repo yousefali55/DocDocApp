@@ -2,7 +2,11 @@ import 'package:bloc/bloc.dart';
 
 import 'package:dio/dio.dart';
 
-import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
+import 'package:docdoc/core/Networking/api_consumer.dart';
+
+import 'package:docdoc/core/Networking/constants/api_contants.dart';
+
+import 'package:docdoc/core/Networking/errors/server_exception.dart';
 
 import 'package:flutter/material.dart';
 
@@ -13,7 +17,9 @@ part 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
 
-  SignUpCubit(this.dio, this.apiErrorModel) : super(SignUpInitial());
+  SignUpCubit(
+    this.apiConsumer,
+  ) : super(SignUpInitial());
 
   GlobalKey<FormState> signUpKey = GlobalKey();
 
@@ -25,27 +31,24 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   TextEditingController passwordConfirmController = TextEditingController();
 
-  final Dio dio;
 
-ApiErrorModel? apiErrorModel;
+  final ApiConsumer apiConsumer;
   signUp() async {
     try {
       emit(SignUploading());
-
-      final response = await dio.post(
-        'https://demo-testing-wtql.onrender.com/api/v1/users/signup',
+      final response = await apiConsumer.post(
+        ApiConstants.signUp,
         data: {
           "name": userNameController.text,
-          "email": emailController.text,
           "password": passwordController.text,
           "passwordConfirm": passwordConfirmController.text,
+          "email": emailController.text,
         },
       );
-
-      print(response.data);
-      emit(SignUpSuccess());
-    } catch (e) {
-      emit(SignUpFailure(errorMessage: apiErrorModel!.message!));
+        emit(SignUpSuccess());
+      
+    }on ServerException catch(e){
+      emit(SignUpFailure(errorMessage: e.apiErrorModel.message));
     }
   }
 

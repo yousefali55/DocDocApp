@@ -54,7 +54,7 @@ class AuthButton extends StatelessWidget {
       ),
       child: IconButton(
         onPressed: onPressed,
-        icon: Container(
+        icon: SizedBox(
             height: 40, width: 40, child: SvgPicture.asset(assetImage)),
       ),
     );

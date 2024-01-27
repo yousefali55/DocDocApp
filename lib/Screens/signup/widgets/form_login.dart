@@ -1,5 +1,9 @@
-import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:docdoc/Screens/signup/cubit/cubit/sign_up_cubit.dart';
+import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
 import 'package:docdoc/core/constants/colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
@@ -8,15 +12,17 @@ import 'package:docdoc/core/widgets/or_sign_with.dart';
 import 'package:docdoc/core/widgets/repeated_button.dart';
 import 'package:docdoc/core/widgets/textformfield_login_signup.dart';
 import 'package:docdoc/core/widgets/texts_under_signin_signup.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpForm extends StatelessWidget {
+  ApiErrorModel? apiErrorModel;
   final String signinOrUp;
-  final ApiErrorModel apiErrorModel;
   final void Function() onTap;
-  const SignUpForm({super.key, required this.signinOrUp, required this.onTap, required this.apiErrorModel});
+  SignUpForm({
+    Key? key,
+    this.apiErrorModel,
+    required this.signinOrUp,
+    required this.onTap,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class SignUpForm extends StatelessWidget {
               .showSnackBar(CustomSnackBar(ColorsManager.generalBlue,contentText: 'Success',));
         } else if (state is SignUpFailure) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar(ColorsManager.red,contentText: 'Failed,${apiErrorModel.message}'));
+              .showSnackBar(CustomSnackBar(ColorsManager.red,contentText: 'Failed'));
         }
       },
       builder: (context, state) {
@@ -87,7 +93,7 @@ class SignUpForm extends StatelessWidget {
               state is SignUploading
                   ? const CircularProgressIndicator()
                   : RepeatedButton(
-                      TextInButton: 'Login',
+                      TextInButton: 'Sign up',
                       onPressed: () {
                         context.read<SignUpCubit>().signUp();
                       }),
@@ -101,7 +107,9 @@ class SignUpForm extends StatelessWidget {
               const AuthLogosRow(),
               TextsUnderSigninSignUp(
                 signinOrUp: signinOrUp,
-                onTap: onTap,
+                onTap: (){
+                  Navigator.pop(context);
+                },
               ),
             ],
           ),

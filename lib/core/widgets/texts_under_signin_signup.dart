@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:docdoc/core/constants/Colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:flutter/gestures.dart';
@@ -11,7 +9,7 @@ class TextsUnderSigninSignUp extends StatelessWidget {
   final void Function() onTap;
   final String signinOrUp;
 
-  const TextsUnderSigninSignUp({required this.onTap, required this.signinOrUp});
+  const TextsUnderSigninSignUp({super.key, required this.onTap, required this.signinOrUp});
 
   @override
   Widget build(BuildContext context) {

@@ -46,7 +46,6 @@ void ApiErrorHandler(DioException e) {
           case 404:
             throw ServerException(
                 apiErrorModel: ApiErrorModel.fromJson(e.response!.data));
-          case 409:
           case 422:
             throw ServerException(
                 apiErrorModel: ApiErrorModel.fromJson(e.response!.data));

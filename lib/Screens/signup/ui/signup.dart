@@ -1,4 +1,3 @@
-import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
 import 'package:docdoc/Screens/signup/cubit/cubit/sign_up_cubit.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/Screens/signup/widgets/form_login.dart';
@@ -37,12 +36,14 @@ class SignUpScreen extends StatelessWidget {
                   height: 17.h,
                 ),
                 SignUpForm(
-                  apiErrorModel: ApiErrorModel(),
-                  signinOrUp: 'Sign Up',
+                  signinOrUp: 'Sign in',
                   onTap: () {
                     context.read<SignUpCubit>().signUp();
                   },
                 ),
+                SizedBox(
+                  height: 20.h,
+                )
               ],
             ),
           ),
@@ -51,33 +52,3 @@ class SignUpScreen extends StatelessWidget {
     );
   }
 }
-
-//                 Row(
-//                   mainAxisAlignment: MainAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       'Welcome Back',
-//                       style: TextStyles.InterW700Size24Blue,
-//                     ),
-//                   ],
-//                 ),
-//                 SizedBox(
-//                   height: 8.h,
-//                 ),
-//                 Text(
-//                   "We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
-//                   style: TextStyles.InterW400Size14Grey,
-//                 ),
-//                 SizedBox(
-//                   height: 36.h,
-//                 ),
-//                 LoginForm(),
-//               ],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-// //

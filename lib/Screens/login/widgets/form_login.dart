@@ -1,5 +1,6 @@
 import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
 import 'package:docdoc/Screens/login/cubit/cubit/sign_in_cubit.dart';
+import 'package:docdoc/core/Routing/routes.dart';
 import 'package:docdoc/core/constants/colors.dart';
 import 'package:docdoc/core/constants/text_styles.dart';
 import 'package:docdoc/core/widgets/auth_logos_row.dart';
@@ -21,9 +22,10 @@ class LoginForm extends StatelessWidget {
         if (state is SignInSuccess) {
           ScaffoldMessenger.of(context)
               .showSnackBar(CustomSnackBar(ColorsManager.generalBlue, contentText: 'Success'));
+          Navigator.pushNamed(context, Routes.HomeScreen);
         } else if (state is SignInFailure) {
           ScaffoldMessenger.of(context)
-              .showSnackBar(CustomSnackBar(ColorsManager.red, contentText: 'Failed,${apiErrorModel!.message}'));
+              .showSnackBar(CustomSnackBar(ColorsManager.red, contentText: 'Failed'));
         }
       },
       builder: (context, state) {
@@ -58,7 +60,7 @@ class LoginForm extends StatelessWidget {
                 children: [
                   Checkbox(
                     value: true,
-                    onChanged: (value) => null,
+                    onChanged: (value) {},
                   ),
                   Text(
                     'Remeber me',
@@ -80,6 +82,7 @@ class LoginForm extends StatelessWidget {
                       TextInButton: 'Login',
                       onPressed: () {
                         context.read<SignInCubit>().signIn();
+                        
                       }),
               SizedBox(
                 height: 46.h,

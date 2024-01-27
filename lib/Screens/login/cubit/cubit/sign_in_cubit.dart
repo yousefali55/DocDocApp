@@ -1,35 +1,31 @@
-import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
+import 'package:docdoc/core/Networking/api_consumer.dart';
+import 'package:docdoc/core/Networking/constants/api_contants.dart';
 import 'package:docdoc/core/Networking/errors/Models/api_error_model.dart';
+import 'package:docdoc/core/Networking/errors/server_exception.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'sign_in_state.dart';
-
 class SignInCubit extends Cubit<SignInState> {
-  SignInCubit(this.dio) : super(SignInInitial()){
-    dio.options.validateStatus = (status) {
-      return status! < 500;
-    };
-  }
   GlobalKey<FormState> signInFormKey = GlobalKey();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  final Dio dio;
+  final ApiConsumer apiConsumer;
   ApiErrorModel? apiErrorModel;
-  signIn() async {
-    try {
-      emit(SignInLoading());
-      final response = await dio.post('https://demo-testing-wtql.onrender.com/api/v1/users/login', data: {
+  SignInCubit(this.apiConsumer) : super(SignInInitial());
+signIn() async {
+  try {
+    emit(SignInLoading());
+    final response = await apiConsumer.post(
+      ApiConstants.signIn,
+      data: {
         "email": emailController.text,
         "password": passwordController.text,
-      }
-      );
-      print(response.toString());
-      emit(SignInSuccess());
-    } catch (e) {
-      emit(SignInFailure(errorMessage: apiErrorModel!.message!));
-      print(e.toString());
-    }
+      },
+    );
+    emit(SignInSuccess());
   }
+  on ServerException catch (e){
+    emit(SignInFailure(errorMessage: e.apiErrorModel.message));
+  }
+}
 }
